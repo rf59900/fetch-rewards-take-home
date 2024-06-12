@@ -63,6 +63,7 @@ const processReceipt = (req, res) => {
     receipts.push({ "id": id, "points": totalPoints });
 
     res.status(200).json({ "id": id });
+    return
 }
 
 const getPoints = (req, res) => {
@@ -72,8 +73,10 @@ const getPoints = (req, res) => {
     const foundReceipt = receipts.find(receipt => receipt.id == id);
     if (!foundReceipt) {
         res.status(400).json({ "ERROR": `Receipt with id: ${id} not found` })
+        return
     }
     res.status(200).json({ "points": foundReceipt.points });
+    return
 }
 
 module.exports = {
